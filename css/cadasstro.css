@@ -1,0 +1,77 @@
+body {
+        font-family: Arial, sans-serif;
+        background-color: #e9edf7;
+        margin: 0; 
+        padding-top: 20px;
+    }
+    img {
+        background-color: rgb(229, 232, 245);
+        margin-left: -700px;
+    }
+
+    .container {
+        max-width: 450px; 
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left; 
+    }
+
+
+    label {
+        display: block;
+        margin-top: 20px; 
+        font-weight: bold; 
+    }
+
+    input {
+        border-radius: 20px;
+        border: 1px solid blue; 
+        padding: 10px; 
+        margin-bottom: 5px;
+        width: 100%; 
+        box-sizing: border-box; 
+    }
+
+    form {
+        padding: 10px 0;
+    }
+
+    h2 {   
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form button {
+        background-color: #00375f;
+        color: white;
+        padding: 10px;
+        border-radius: 20px;
+        border: none;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    form button a {
+        color: white;
+        text-decoration: none;
+    }
+
+/* Adicionado para estilizar o campo de seleção (Tipo) */
+select {
+    border-radius: 20px;
+    border: 1px solid blue; 
+    padding: 10px; 
+    margin-bottom: 5px;
+    width: 100%; 
+    box-sizing: border-box; 
+    background-color: white;
+    height: 40px; 
+    /* Remove a seta padrão em alguns navegadores para uniformizar */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}    
