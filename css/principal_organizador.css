@@ -1,0 +1,64 @@
+/* Importa variáveis e estilos básicos comuns do principal_participante.css */
+@import url('principal_participante.css');
+
+/* ------------------------------------------------ */
+/* --- 1. Estilos para Centralizar o Conteúdo --- */
+/* ------------------------------------------------ */
+
+.conteudo-principal {
+    /* Sobrescreve o estilo original para centralizar */
+    display: flex;
+    flex-direction: column; /* Alinha os itens (bloco azul e botões) em coluna */
+    align-items: center;    /* Centraliza os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens verticalmente */
+    
+    /* Faz com que o main ocupe toda a altura restante da tela */
+    min-height: calc(100vh - 70px); /* Ajuste o 70px pela altura real do seu cabeçalho */
+    padding: 20px;
+    box-sizing: border-box; 
+}
+
+.bloco-saudacao {
+    max-width: 650px; 
+    width: 90%; 
+    margin-bottom: 40px; /* Espaço entre o bloco e os botões */
+    text-align: center;
+}
+
+/* ------------------------------------------------ */
+/* --- 2. Estilos para os Botões de Ação --- */
+/* ------------------------------------------------ */
+
+.botoes-acao {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;       /* Espaço entre os botões */
+    justify-content: center; /* Centraliza os botões */
+    margin-top: 10px;
+    max-width: 100%; 
+}
+
+.botao-painel {
+    background-color: #f0f0f0; 
+    color: var(--cor-primaria); 
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none; 
+    font-weight: bold;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.botao-painel:hover {
+    background-color: #e0e0e0; 
+    transform: translateY(-2px); 
+}
+
+.botao-painel i {
+    color: var(--cor-secundaria, #00bcd4); 
+    font-size: 1.3em;
+}

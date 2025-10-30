@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saqua Eventos</title>
     <link rel="stylesheet" href="../css/principal_participante.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script defer src="../js/principal_participante.js"></script>
 </head>
 <body>
@@ -17,12 +18,12 @@
             
             <a href="#" class="item-menu">
                 Meus Ingressos
-                <img src="../imagens/icones/ingressos-de-cinema.png" alt="Meus Ingressos" class="icone-menu">
+                <i class="fas fa-ticket-alt" style="color: #0e4c6c;"></i> 
             </a>
             
             <a href="favoritos.html" class="item-menu">
                 Favoritos
-                <img src="../imagens/icones/favorito.png" alt="Criar Favoritos" class="icone-menu">
+                <i class="fas fa-star" style="color: #0e4c6c;"></i>
             </a>
             
             <div class="menu-perfil" id="perfil-dropdown-container">
@@ -42,12 +43,20 @@
     </header>
 
     <main class="conteudo-principal">
-        <div class="bloco-mensagem">
+        <div class="bloco-saudacao">
             <p>
-                **Publique um evento pela primeira vez!**<br>
-                Você tem total autonomia para cadastrar, gerenciar e<br>
-                acompanhar todas as informações do seu evento.
+                **Olá, <span id="nome-saudacao">Participante</span>!**<br>
+                Descubra e inscreva-se nos melhores eventos de Saquarema.
             </p>
+        </div>
+
+        <div class="listagem-eventos-container">
+            <h2>Eventos em Destaque</h2>
+            
+            <div id="listagem-eventos" class="grade-eventos">
+                </div>
+            
+            <p class="mensagem-nenhum-evento hidden" id="mensagem-nenhum-evento">Nenhum evento encontrado. Cadastre um!</p>
         </div>
     </main>
 </body>

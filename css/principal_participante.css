@@ -1,22 +1,23 @@
 /* Definições Gerais */
 :root {
     --cor-primaria: #0e4c6c; /* Azul escuro/Marinho para o cabeçalho e blocos */
-    --cor-secundaria: #00bcd4; /* Azul claro/Ciano (não usado diretamente, mas bom para links) */
+    --cor-secundaria: #00bcd4; /* Azul claro/Ciano (links/destaque) */
     --cor-texto-claro: white;
     --cor-fundo: #f0f0f0; /* Fundo geral da página */
     --cor-cinza-claro: #dcdcdc; /* Para bordas ou separadores */
+    --cor-texto: #333;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif; /* Fonte simples para o exemplo */
+    font-family: Arial, sans-serif;
 }
 
 body {
     background-color: var(--cor-fundo);
-    color: #333;
+    color: var(--cor-texto);
 }
 
 a {
@@ -34,107 +35,96 @@ a {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--cor-primaria);
-}
-
-.logo span {
-    font-size: 10px;
-    font-weight: normal;
-    display: block;
-    margin-top: -8px;
-    color: #555;
+.logo-container .logo-img {
+    height: 40px; 
+    width: auto;
 }
 
 .menu-principal {
     display: flex;
     align-items: center;
     gap: 20px;
-    font-size: 14px;
-    color: #555;
 }
 
 .item-menu {
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    padding: 5px 10px;
+    transition: color 0.3s;
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 8px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    gap: 8px;
 }
 
-.item-menu:hover {
-    background-color: var(--cor-fundo);
+.item-menu i {
+    font-size: 1.1em;
 }
 
 /* 2. MENU DE PERFIL (Dropdown) */
 .menu-perfil {
     position: relative;
     cursor: pointer;
-    z-index: 10;
+    margin-left: 20px;
 }
 
 .icone-perfil {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 8px 10px;
-    border-radius: 4px;
-    /* Dando um destaque ao Meu Perfil, como na imagem */
-    border: 1px solid var(--cor-cinza-claro); 
-    color: var(--cor-primaria);
+    gap: 8px;
     font-weight: bold;
+    color: var(--cor-primaria);
+}
+
+.icone-perfil i {
+    font-size: 1.4em;
 }
 
 .dropdown-perfil {
-    /* Posição conforme aparece na imagem */
     position: absolute;
     top: 100%; 
     right: 0;
-    width: 200px;
     background-color: var(--cor-texto-claro);
     border: 1px solid var(--cor-cinza-claro);
-    border-top: none; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 4px 4px;
-    padding: 10px 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    min-width: 200px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none; /* Desativa interação quando oculto */
 }
 
-/* === REGRAS ADICIONADAS/MODIFICADAS PARA O JAVASCRIPT === */
-
-/* Esconde o dropdown por padrão (será usado pela classe 'hidden' no HTML) */
-.dropdown-perfil.hidden {
-    display: none;
-}
-
-/* Torna o dropdown visível (será ativado pelo JavaScript) */
 .dropdown-perfil.visible {
-    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto; /* Reativa interação */
 }
 
-/* ======================================================= */
+.dropdown-perfil.hidden {
+    display: none; /* Oculta totalmente quando a transição termina */
+}
 
 .info-usuario {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 8px 15px;
-    font-weight: bold;
-    color: #333;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--cor-cinza-claro);
 }
 
 .avatar-sigla {
     background-color: var(--cor-primaria);
     color: var(--cor-texto-claro);
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .btn-sair {
@@ -150,44 +140,127 @@ a {
     background-color: var(--cor-fundo);
 }
 
-/* 3. CONTEÚDO PRINCIPAL (main) */
+/* 3. CONTEÚDO PRINCIPAL (main) E SAUDAÇÃO */
+
 .conteudo-principal {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
     align-items: center;
-    height: calc(100vh - 70px); /* Ocupa o restante da altura da tela */
-    padding-top: 50px; /* Adiciona um espaço do cabeçalho */
+    padding: 30px;
+    min-height: calc(100vh - 70px); 
 }
 
-.bloco-mensagem {
+.bloco-saudacao {
     background-color: var(--cor-primaria);
     color: var(--cor-texto-claro);
-    padding: 40px 60px;
+    padding: 25px 40px;
+    border-radius: 8px;
     text-align: center;
     line-height: 1.6;
-    font-size: 16px;
-    
-    /* Configurações de largura e cor da imagem */
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Limita a largura do bloco */
+}
+
+.bloco-saudacao p {
+    font-size: 1.2em;
+}
+
+.bloco-saudacao #nome-saudacao {
+    font-weight: 700;
+}
+
+
+/* --- 4. LISTAGEM DE EVENTOS (Novos estilos para Card) --- */
+
+.listagem-eventos-container {
     width: 100%;
-    max-width: 950px; 
-    height: 180px; 
+    max-width: 1200px;
+}
+
+.listagem-eventos-container h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--cor-primaria);
+    border-bottom: 2px solid var(--cor-cinza-claro);
+    padding-bottom: 10px;
+}
+
+.grade-eventos {
+    display: grid;
+    /* Cria um layout responsivo: 3 colunas em telas grandes */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+.card-evento {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.card-evento:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-evento-imagem {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; 
+}
+
+.card-evento-conteudo {
+    padding: 15px;
+}
+
+.card-evento h3 {
+    font-size: 1.4em;
+    color: var(--cor-primaria);
+    margin-bottom: 5px;
+}
+
+.card-evento-info {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.bloco-mensagem p {
-    /* Ajusta o espaçamento interno do texto */
-    padding: 20px;
+.card-evento-info i {
+    margin-right: 5px;
+    color: var(--cor-secundaria); 
 }
 
-.bloco-mensagem strong {
-    font-size: 20px;
+.card-evento-data {
+    font-weight: bold;
+    color: #e74c3c; 
 }
 
-/* Estilo para os ícones de imagem (se for usar a Opção A) */
-.icone-menu {
-    width: 16px;  /* Tamanho pequeno para o ícone */
-    height: 16px;
+.card-evento-organizador {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 10px;
+    text-align: right;
+    border-top: 1px solid var(--cor-cinza-claro);
+    padding-top: 8px;
+}
+
+.mensagem-nenhum-evento {
+    text-align: center;
+    padding: 50px;
+    background-color: var(--cor-texto-claro);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+    border: 1px solid var(--cor-cinza-claro);
+}
+
+.mensagem-nenhum-evento.hidden {
+    display: none;
 }

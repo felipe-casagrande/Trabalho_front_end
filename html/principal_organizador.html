@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organizador | Saqua Eventos</title>
-    <link rel="stylesheet" href="../css/principal_participante.css"> 
+    <link rel="stylesheet" href="../css/principal_organizador.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script defer src="../js/principal_organizador.js"></script>
 </head>
@@ -42,11 +42,22 @@
     </header>
 
     <main class="conteudo-principal">
-        <div class="bloco-mensagem" style="height: 150px;">
+        <div class="bloco-saudacao"> 
             <p>
                 **Olá, <span id="nome-saudacao">Organizador</span>!**<br>
                 Use o menu "Cadastrar Evento" para começar a divulgar seus eventos.
             </p>
+        </div>
+
+        <div class="botoes-acao">
+            <a href="cadastrar_evento.html" class="botao-painel">
+                <i class="fas fa-calendar-plus"></i>
+                Cadastrar Novo Evento
+            </a>
+            <a href="meus_eventos.html" class="botao-painel">
+                <i class="fas fa-list-alt"></i>
+                Visualizar Meus Eventos
+            </a>
         </div>
     </main>
 </body>
