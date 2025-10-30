@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizador | Saqua Eventos</title>
+    <title>Meus Eventos | Organizador</title>
     <link rel="stylesheet" href="../css/principal_participante.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script defer src="../js/principal_organizador.js"></script>
+    <link rel="stylesheet" href="../css/meus_eventos.css"> 
+    <script defer src="../js/meus_eventos.js"></script> 
 </head>
 <body>
     <header class="cabecalho">
         <div class="logo-container">
-            <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+            <a href="principal_organizador.html">
+                <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+            </a>
         </div>
         
         <nav class="menu-principal">
@@ -21,7 +24,7 @@
                 <i class="fas fa-plus-circle" style="color: #0e4c6c;"></i> 
             </a>
             
-            <a href="meus_eventos.html" class="item-menu">
+            <a href="meus_eventos.html" class="item-menu item-ativo">
                 Meus Eventos
                 <i class="fas fa-calendar-alt" style="color: #0e4c6c;"></i>
             </a>
@@ -33,7 +36,7 @@
                 
                 <div class="dropdown-perfil hidden" id="opcoes-perfil">
                     <div class="info-usuario">
-                        <span class="avatar-sigla">NU</span> <span id="nome-usuario-perfil">Nome Organizador</span>
+                        <span class="avatar-sigla">OG</span> <span id="nome-usuario-perfil">Organizador</span>
                     </div>
                     <a href="login.html" class="btn-sair"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
@@ -42,12 +45,11 @@
     </header>
 
     <main class="conteudo-principal">
-        <div class="bloco-mensagem" style="height: 150px;">
-            <p>
-                **Olá, <span id="nome-saudacao">Organizador</span>!**<br>
-                Use o menu "Cadastrar Evento" para começar a divulgar seus eventos.
-            </p>
-        </div>
+        <h1>Eventos Criados</h1>
+        
+        <div class="lista-eventos" id="lista-eventos-container">
+            </div>
+
     </main>
 </body>
 </html>
