@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="detalhe-titulo">Detalhes do Evento | Saqua Events</title>
+    
+    <link rel="stylesheet" href="../css/principal_participante.css"> 
+    <link rel="stylesheet" href="../css/detalhe_evento.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="../js/detalhe_evento.js"></script> 
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="principal_participante.html" id="link-home">
+                <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav class="menu-principal">
+            <div class="menu-perfil" id="perfil-dropdown-container">
+                <div class="icone-perfil" id="botao-perfil">
+                    <i class="fas fa-user-circle"></i> Meu Perfil
+                </div>
+                <div class="dropdown-perfil hidden" id="opcoes-perfil">
+                    <div class="info-usuario">
+                        <span class="avatar-sigla">NU</span> 
+                        <span id="nome-usuario-perfil">Nome Usuário</span>
+                    </div>
+                    <a href="login.html" class="btn-sair">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-detalhe">
+        <div class="bloco-evento">
+            
+            <div class="coluna-esquerda">
+                <img src="../imagens/eventos/default.jpg" alt="Banner do Evento" class="banner-evento" id="banner-evento">
+                
+                <div class="info-data-organizador">
+                    <span id="data-dia-mes" class="data-destaque">XX/YY</span>
+                    <span id="data-hora" class="data-destaque-hora">HH:MM</span>
+                    <span id="organizador-nome">Organizador: ---</span>
+                </div>
+
+                <div class="info-endereco">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="local-completo">Endereço do Local, Cidade-UF</span>
+                </div>
+                
+            </div>
+
+            <div class="coluna-direita">
+                <h1 id="evento-titulo">Nome do Evento</h1>
+                <h2 id="evento-subtitulo">Subtítulo/Local</h2>
+
+                <p class="data-hora-local">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span id="data-detalhe">Quinta, 01/01/2025 às 20:00</span>
+                    <span class="separador">|</span>
+                    <span id="local-detalhe">Universidade de Vassouras, Saquarema-RJ</span>
+                </p>
+                
+                <div class="secao-descricao">
+                    <h3>Apresentação</h3>
+                    <p id="evento-descricao">
+                        Descrição detalhada do evento...
+                    </p>
+                </div>
+
+                <div class="secao-acao">
+                    <h3>Escolha Seu Ingresso</h3>
+                    <button id="btn-comprar-ingresso" class="btn-principal" disabled>
+                        <i class="fas fa-ticket-alt"></i> Comprar Ingresso
+                    </button>
+                    <p class="aviso-capacidade" id="aviso-capacidade-restante"></p>
+                </div>
+                
+                <div class="acao-favorito">
+                    <i class="far fa-heart" id="icone-favorito"></i> <span id="texto-favorito">Adicionar aos Favoritos</span>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

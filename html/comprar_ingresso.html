@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Ingressos | Saqua Events</title>
+    
+    <link rel="stylesheet" href="../css/principal_participante.css"> 
+    <link rel="stylesheet" href="../css/comprar_ingresso.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="../js/comprar_ingresso.js"></script> 
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="principal_participante.html">
+                <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav class="menu-principal">
+            <a href="#" id="btn-voltar-evento" class="item-menu">
+                <i class="fas fa-arrow-left"></i> Voltar ao Evento
+            </a>
+            
+            <div class="menu-perfil">
+                <i class="fas fa-user-circle"></i> Meu Perfil
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-compra">
+        <div class="bloco-compra">
+            
+            <h1 id="nome-evento-compra">Ingressos</h1>
+            
+            <div id="lista-ingressos-compra" class="lista-ingressos">
+                </div>
+
+            <div class="resumo-total">
+                <span class="texto-total">Total: <span id="valor-total">R$ 0,00</span></span>
+            </div>
+            
+            <button id="btn-finalizar-compra" class="btn-principal" disabled>
+                Comprar Ingressos
+            </button>
+        </div>
+    </main>
+</body>
+</html>

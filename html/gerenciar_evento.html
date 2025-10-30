@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Evento | Saqua Events</title>
+    <link rel="stylesheet" href="../css/principal_organizador.css"> 
+    <link rel="stylesheet" href="../css/gerenciar_evento.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="../js/gerenciar_evento.js"></script> 
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="principal_organizador.html">
+                <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav class="menu-principal">
+            <a href="meus_eventos.html" class="item-menu">
+                <i class="fas fa-arrow-left"></i> Voltar para Meus Eventos
+            </a>
+            
+            <div class="menu-perfil" id="perfil-dropdown-container">
+                <div class="icone-perfil" id="botao-perfil">
+                    <i class="fas fa-user-circle"></i> Perfil                                          
+                </div>
+                
+                <div class="dropdown-perfil hidden" id="opcoes-perfil">
+                    <div class="info-usuario">
+                        <span class="avatar-sigla">OG</span> <span id="nome-usuario-perfil">Organizador</span>
+                    </div>
+                    <a href="login.html" class="btn-sair"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-gerenciamento">
+        <h1 id="titulo-evento">Gerenciando: [Nome do Evento]</h1>
+        
+        <div class="painel-resumo">
+            <div class="resumo-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="resumo-data-inicio">Data Início: --/--/----</span>
+            </div>
+            <div class="resumo-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span id="resumo-local">Local: Não Informado</span>
+            </div>
+        </div>
+
+        <form id="form-gerenciamento-rapido">
+            <section class="acoes-grid">
+                
+                <div class="card-gerenciamento card-status">
+                    <h2>Status do Evento</h2>
+                    <span id="status-atual" class="tag-status agendado">Agendado</span>
+                    
+                    <div class="select-container">
+                        <label for="select-status">Alterar Status:</label>
+                        <select id="select-status">
+                            <option value="Agendado">Agendado</option>
+                            <option value="Finalizado">Finalizado</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="card-gerenciamento card-datas">
+                    <h2>Datas e Horários</h2>
+                    <div class="campo-data">
+                        <label for="input-data-inicio">Data de Início:</label>
+                        <input type="date" id="input-data-inicio">
+                    </div>
+                    <div class="campo-data">
+                        <label for="input-data-termino">Data de Término:</label>
+                        <input type="date" id="input-data-termino">
+                    </div>
+                </div>
+                
+                <div class="card-gerenciamento card-local">
+                    <h2>Local e Endereço</h2>
+                    <div class="campo-local">
+                        <label for="input-local">Local (Ex: Campus):</label>
+                        <input type="text" id="input-local">
+                    </div>
+                    <div class="campo-local">
+                        <label for="input-endereco">Endereço Completo:</label>
+                        <input type="text" id="input-endereco">
+                    </div>
+                </div>
+                
+                <div class="card-gerenciamento card-capacidade">
+                    <h2>Capacidade</h2>
+                    <div class="campo-capacidade">
+                        <label for="input-capacidade">Capacidade Máxima:</label>
+                        <input type="number" id="input-capacidade" min="1">
+                    </div>
+                    <p>Ingressos Vendidos: <span id="ingressos-vendidos">0</span></p>
+                    <button id="btn-gerenciar-vendas" type="button" class="btn-secundario"><i class="fas fa-ticket-alt"></i> Ver Vendas</button>
+                </div>
+
+                <div class="card-gerenciamento card-ingressos-lotes grid-full-width">
+                    <h2>Lotes e Preços</h2>
+                    <p class="sub-aviso">Edite preços e aumente (mas não diminua) a quantidade total disponível.</p>
+                    
+                    <div id="lista-tipos-ingressos">
+                        </div>
+
+                    <button type="button" id="btn-adicionar-ingresso" class="btn-secundario-full">
+                        <i class="fas fa-plus-circle"></i> Adicionar Novo Lote
+                    </button>
+                </div>
+            </section>
+            
+            <button type="submit" id="btn-salvar-alteracoes" class="btn-salvar-principal">Salvar Todas as Alterações</button>
+        </form>
+    </main>
+</body>
+</html>

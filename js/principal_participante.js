@@ -2,10 +2,8 @@
 // 1. Lógica do Dropdown de Perfil
 // =================================================================
 
-// Função de toggleDropdown para o menu de perfil
 function toggleDropdown() {
     const opcoesPerfil = document.getElementById('opcoes-perfil');
-    // Adicionando uma verificação robusta
     if (!opcoesPerfil) return; 
     
     if (opcoesPerfil.classList.contains('hidden')) {
@@ -21,12 +19,10 @@ function configurarMenuPerfil() {
     const botaoPerfil = document.getElementById('botao-perfil');
     const containerPerfil = document.getElementById('perfil-dropdown-container');
 
-    // Configura o clique no botão para chamar a função de toggle
     if (botaoPerfil) {
         botaoPerfil.addEventListener('click', toggleDropdown);
     }
 
-    // Fecha o dropdown se o usuário clicar em qualquer lugar fora dele
     document.addEventListener('click', function(event) {
         const opcoesPerfil = document.getElementById('opcoes-perfil');
         if (containerPerfil && opcoesPerfil && !containerPerfil.contains(event.target)) {
@@ -37,7 +33,6 @@ function configurarMenuPerfil() {
         }
     });
 
-    // Função para carregar o nome do usuário logado e as iniciais
     function carregarNomeUsuario() {
         const nomeUsuarioElement = document.getElementById('nome-usuario-perfil');
         const avatarSiglaElement = document.querySelector('.avatar-sigla');
@@ -48,7 +43,6 @@ function configurarMenuPerfil() {
             if (nomeUsuarioElement) {
                 nomeUsuarioElement.textContent = nomeLogado;
             }
-            // Exibe só o primeiro nome na saudação principal
             if (nomeSaudacaoElement) {
                 nomeSaudacaoElement.textContent = nomeLogado.split(' ')[0];
             }
@@ -68,7 +62,7 @@ function configurarMenuPerfil() {
                      iniciais = partesNome[0].substring(0, 2).toUpperCase();
                 }
 
-                avatarSiglaElement.textContent = iniciais || 'OG'; 
+                avatarSiglaElement.textContent = iniciais || 'NU'; 
             }
         }
     }
@@ -78,21 +72,59 @@ function configurarMenuPerfil() {
 
 
 // =================================================================
-// 2. Lógica de Listagem de Eventos (NOVA)
+// 2. Lógica de Favoritos
 // =================================================================
 
-function criarCardEvento(evento) {
-    // Formata a data para exibição
-    const dataFormatada = new Date(evento.dataInicio).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
+function getFavoritos() {
+    const favoritos = localStorage.getItem('eventosFavoritos');
+    return favoritos ? JSON.parse(favoritos) : [];
+}
 
-    // Constrói a estrutura HTML do card
-    const cardHTML = `
-        <div class="card-evento" data-evento-id="${evento.id}">
-            <img src="${evento.imagem}" alt="Imagem do Evento ${evento.nome}" class="card-evento-imagem">
+function toggleFavorito(eventoId, iconElement) {
+    const idNum = parseInt(eventoId);
+    let favoritosAtuais = getFavoritos();
+    
+    if (favoritosAtuais.includes(idNum)) {
+        favoritosAtuais = favoritosAtuais.filter(id => id !== idNum);
+        iconElement.classList.remove('fas');
+        iconElement.classList.add('far');
+        alert('Evento removido dos favoritos!');
+    } else {
+        favoritosAtuais.push(idNum);
+        iconElement.classList.remove('far');
+        iconElement.classList.add('fas');
+        alert('Evento adicionado aos favoritos!');
+    }
+    
+    localStorage.setItem('eventosFavoritos', JSON.stringify(favoritosAtuais));
+}
+
+// =================================================================
+// 3. Lógica de Listagem e Pesquisa de Eventos
+// =================================================================
+
+function getEventosSalvos() {
+    return JSON.parse(localStorage.getItem('eventosSaqua')) || [];
+}
+
+function criarCardEvento(evento) {
+    const idsFavoritos = getFavoritos();
+    const isFavorito = idsFavoritos.includes(evento.id);
+    const iconClass = isFavorito ? 'fas' : 'far'; 
+
+    const dataFormatada = new Date(evento.dataInicio).toLocaleDateString('pt-BR');
+
+    // CORRIGIDO: O card inteiro é um link para a página de detalhes
+    return `
+        <a href="detalhe_evento.html?id=${evento.id}" class="card-evento">
+            <div class="card-imagem-container">
+                <img src="${evento.imagem}" alt="Imagem do Evento ${evento.nome}" class="card-evento-imagem">
+                
+                <button class="btn-favoritar" data-id="${evento.id}">
+                    <i class="${iconClass} fa-heart" style="color: #e74c3c;"></i>
+                </button>
+            </div>
+            
             <div class="card-evento-conteudo">
                 <h3>${evento.nome}</h3>
                 <p class="card-evento-info card-evento-data"><i class="fas fa-calendar-alt"></i> ${dataFormatada} às ${evento.horaInicio}</p>
@@ -100,52 +132,75 @@ function criarCardEvento(evento) {
                 <p class="card-evento-info"><i class="fas fa-users"></i> ${evento.capacidade ? 'Capacidade: ' + evento.capacidade : 'Sem limite'}</p>
                 <p class="card-evento-organizador">Organizador: ${evento.organizador}</p>
             </div>
-        </div>
+        </a>
     `;
-    
-    return cardHTML;
 }
 
-function carregarEventos() {
+function carregarEventos(termoPesquisa = '') {
     const listagemContainer = document.getElementById('listagem-eventos');
     const mensagemVazia = document.getElementById('mensagem-nenhum-evento');
     
-    // 1. Tenta carregar os eventos salvos no localStorage
-    const eventosSalvos = JSON.parse(localStorage.getItem('eventosSaqua')) || [];
+    let eventosAExibir = getEventosSalvos();
 
-    // Limpa qualquer conteúdo prévio
+    if (termoPesquisa) {
+        const termo = termoPesquisa.toLowerCase();
+        eventosAExibir = eventosAExibir.filter(evento => 
+            evento.nome.toLowerCase().includes(termo)
+        );
+    }
+
     if (listagemContainer) {
         listagemContainer.innerHTML = '';
     }
     
-    if (eventosSalvos.length === 0) {
-        // 2. Se não houver eventos, exibe a mensagem de nenhum evento (se o elemento existir)
+    if (eventosAExibir.length === 0) {
         if (mensagemVazia) {
+            mensagemVazia.textContent = termoPesquisa ? 
+                `Nenhum evento encontrado para "${termoPesquisa}".` : 
+                'Nenhum evento encontrado. Cadastre um!';
             mensagemVazia.classList.remove('hidden');
         }
         return;
     }
     
-    // Esconde a mensagem caso haja eventos
     if (mensagemVazia) {
         mensagemVazia.classList.add('hidden');
     }
 
-    // 3. Itera sobre a lista de eventos e cria um card para cada um
     if (listagemContainer) {
-        eventosSalvos.forEach(evento => {
+        eventosAExibir.forEach(evento => {
             const cardHTML = criarCardEvento(evento);
             listagemContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+        
+        // Adiciona listeners aos botões de favoritar
+        document.querySelectorAll('.btn-favoritar').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const eventoId = this.dataset.id;
+                const icon = this.querySelector('i');
+                toggleFavorito(eventoId, icon);
+                e.preventDefault(); // Previne que o clique no botão ative o link do card
+                e.stopPropagation(); // Impede que o clique no botão ative o clique do card inteiro
+            });
         });
     }
 }
 
 
 // =================================================================
-// 3. Inicialização
+// 4. Inicialização
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    configurarMenuPerfil(); // Inicializa o menu de perfil e nome
-    carregarEventos(); // Chama a função para exibir os eventos
+    configurarMenuPerfil(); 
+    
+    const inputPesquisa = document.getElementById('input-pesquisa');
+
+    if (inputPesquisa) {
+        inputPesquisa.addEventListener('input', function() {
+            carregarEventos(this.value); 
+        });
+    }
+    
+    carregarEventos(); 
 });

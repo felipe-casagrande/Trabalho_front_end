@@ -1,0 +1,75 @@
+:root {
+    --cor-fundo-pagina: #e9edf7; /* Lilás suave do seu design */
+    --cor-primaria: #0e4c6c;
+    --cor-texto: #333;
+    --cor-borda-tabela: #ddd;
+    --cor-cabecalho-tabela: #f0f0f0;
+}
+
+body {
+    background-color: var(--cor-fundo-pagina);
+}
+
+.container-ingressos {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.titulo-pagina {
+    font-size: 2em;
+    color: var(--cor-primaria);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--cor-borda-tabela);
+    padding-bottom: 10px;
+}
+
+/* --- Tabela de Ingressos --- */
+.tabela-ingressos-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Permite rolar em telas menores */
+}
+
+.tabela-ingressos {
+    width: 100%;
+    border-collapse: collapse; 
+    /* Garante que a tabela use o layout fixo para as colunas */
+    table-layout: auto; 
+    min-width: 800px; /* Largura mínima para garantir legibilidade */
+}
+
+.tabela-ingressos thead tr {
+    background-color: var(--cor-cabecalho-tabela);
+    color: var(--cor-texto);
+    text-align: left;
+    font-weight: bold;
+}
+
+.tabela-ingressos th, .tabela-ingressos td {
+    padding: 12px 15px;
+    border: 1px solid var(--cor-borda-tabela);
+    border-width: 0 0 1px 0; 
+}
+
+.tabela-ingressos tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estilo para a mensagem vazia */
+.mensagem-vazia {
+    text-align: center;
+    padding: 50px;
+    color: #555;
+}
+
+.mensagem-vazia a {
+    color: var(--cor-primaria);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}

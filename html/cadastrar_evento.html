@@ -107,6 +107,33 @@
                 <input type="url" id="imagem-url" name="imagem-url" placeholder="URL para banner do evento">
             </div>
 
+            <section class="secao-ingressos">
+                <h3>Gestão de Ingressos*</h3>
+                <p>Defina pelo menos um tipo de ingresso (Lote/Setor, Preço e Quantidade disponível).</p>
+                
+                <div id="lista-tipos-ingressos">
+                    <div class="tipo-ingresso" data-id="1">
+                        <div class="linha-campos">
+                            <div class="campo-metade">
+                                <label for="lote-1">Nome do Ingresso/Lote*</label>
+                                <input type="text" id="lote-1" placeholder="Ex: Lote 1, Setor VIP" required>
+                            </div>
+                            <div class="campo-quarto">
+                                <label for="preco-1">Preço (R$)*</label>
+                                <input type="number" id="preco-1" min="0.01" step="0.01" required>
+                            </div>
+                            <div class="campo-quarto">
+                                <label for="quantidade-1">Qtd. Disponível*</label>
+                                <input type="number" id="quantidade-1" min="1" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-adicionar-ingresso" class="btn-secundario">
+                    <i class="fas fa-plus-circle"></i> Adicionar Outro Lote
+                </button>
+            </section>
             <button type="submit">Publicar Evento</button>
         </form>
         <p><a href="principal_organizador.html">Voltar para o Painel</a></p>

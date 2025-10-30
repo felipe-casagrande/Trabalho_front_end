@@ -138,9 +138,10 @@ h3 {
     font-weight: bold;
 }
 
-.secao-info-basicas p {
+.secao-info-basicas p, .secao-ingressos p {
     color: #777;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .titulo-linha-datas, .titulo-linha-local {
@@ -196,9 +197,6 @@ input::-webkit-inner-spin-button {
     flex-direction: column; 
 }
 
-.campo-linha-unica input, .campo-linha-unica select, .campo-linha-unica textarea {
-    margin-bottom: 15px; 
-}
 
 /* Ajuste para input com asterisco de "obrigatório" */
 label:after {
@@ -220,7 +218,7 @@ label:after {
 
 
 /* --- 5. Botão de Publicar --- */
-form button {
+form button[type="submit"] {
     background-color: var(--cor-botao-principal);
     color: var(--cor-texto-claro);
     padding: 10px;
@@ -234,7 +232,7 @@ form button {
     transition: background-color 0.3s;
 }
 
-form button:hover {
+form button[type="submit"]:hover {
     background-color: var(--cor-primaria);
 }
 
@@ -251,13 +249,68 @@ p a {
 
 
 /* --- CORREÇÃO FINAL: Alinhamento e Espaçamento para Datas --- */
-
-/* Remove a margem inferior padrão dos inputs dentro de linha-campos, corrigindo o desalinhamento vertical. */
 .linha-campos input, .linha-campos select, .linha-campos textarea {
     margin-bottom: 0; 
 }
 
-/* Garante o espaçamento abaixo do grupo de datas e horários */
 .linha-campos.datas-horarios {
     margin-bottom: 25px; 
+}
+
+/* --- 6. Estilização de Ingressos (NOVO) --- */
+
+.tipo-ingresso {
+    border: 1px solid var(--cor-borda-input);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.tipo-ingresso .campo-quarto {
+    /* Ajuste para o layout de ingresso */
+    flex: 0 0 calc(25% - 5px); 
+}
+
+.tipo-ingresso .campo-metade {
+    /* Ajuste para o layout de ingresso */
+    flex: 0 0 calc(50% - 5px); 
+}
+
+/* Estilo para o botão de adicionar lote */
+#btn-adicionar-ingresso {
+    display: block;
+    width: auto;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    border: 1px solid var(--cor-primaria);
+    color: var(--cor-primaria);
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#btn-adicionar-ingresso:hover {
+    background-color: #e0f7fa;
+}
+
+#btn-adicionar-ingresso i {
+    margin-right: 5px;
+}
+
+.btn-remover-lote {
+    background: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+.btn-remover-lote:hover {
+    background: #c0392b;
 }

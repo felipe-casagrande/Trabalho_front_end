@@ -1,0 +1,165 @@
+/* --- Estilos Comuns para Checkout (Dados e Pagamento) --- */
+
+:root {
+    --cor-fundo-bloco: #f0f0f0; /* Cinza claro para os blocos */
+    --cor-primaria: #0e4c6c;
+    --cor-destaque-acao: #e74c3c; 
+    --cor-borda-resumo: #ccc;
+    --cor-fundo-pagina: #e9edf7;
+}
+
+body {
+    background-color: var(--cor-fundo-pagina);
+}
+
+.container-checkout {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.titulo-secao {
+    font-size: 1.6em;
+    color: var(--cor-primaria);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--cor-borda-resumo);
+    padding-bottom: 10px;
+}
+
+/* --- Layout das Colunas --- */
+
+.coluna-dados {
+    flex: 2; /* Ocupa mais espaço para o formulário */
+    min-width: 450px;
+    background-color: var(--cor-fundo-card);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.coluna-resumo {
+    flex: 1; 
+    min-width: 300px;
+    background-color: var(--cor-fundo-bloco);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: sticky; /* Mantém o resumo visível ao rolar */
+    top: 20px;
+}
+
+/* --- Formulário de Nomes --- */
+
+.instrucao {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.item-portador {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.item-portador .nome-ingresso-lote {
+    font-weight: bold;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.item-portador label {
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.item-portador input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--cor-borda-resumo);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* --- Resumo do Pedido --- */
+
+.resumo-item-lote {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--cor-borda-resumo);
+}
+
+.resumo-item-lote:last-child {
+    border-bottom: none;
+}
+
+.lote-titulo {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.lote-preco {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 3px;
+}
+
+/* Resumo Final (Total) */
+
+.resumo-final {
+    border-top: 2px solid var(--cor-borda-resumo);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.total-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--cor-primaria);
+}
+
+/* --- Botão de Checkout --- */
+
+.btn-prosseguir {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--cor-destaque-acao);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s;
+}
+
+.btn-prosseguir i {
+    margin-left: 10px;
+}
+
+.btn-prosseguir:hover {
+    background-color: #c0392b;
+}
+
+/* Media Query para empilhar em telas pequenas */
+@media (max-width: 900px) {
+    .container-checkout {
+        flex-direction: column;
+    }
+    .coluna-resumo {
+        position: static; 
+        width: 100%;
+    }
+    .coluna-dados {
+        min-width: 100%;
+        order: 2; /* Move o formulário para baixo do resumo */
+    }
+}   

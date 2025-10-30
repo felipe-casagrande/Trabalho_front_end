@@ -1,0 +1,136 @@
+:root {
+    --cor-fundo-bloco: #002b45; /* Azul Escuro */
+    --cor-texto-claro: white;
+    --cor-borda-clara: #164b72;
+    --cor-destaque-acao: #e74c3c;
+    --cor-texto-principal: #333;
+    --cor-fundo-pagina: #e9edf7;
+}
+
+body {
+    background-color: var(--cor-fundo-pagina);
+}
+
+.container-compra {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    min-height: calc(100vh - 70px);
+}
+
+.bloco-compra {
+    width: 100%;
+    max-width: 500px;
+    background-color: var(--cor-fundo-bloco);
+    color: var(--cor-texto-claro);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.bloco-compra h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--cor-borda-clara);
+    padding-bottom: 15px;
+}
+
+/* --- Estilo do Item de Ingresso --- */
+.item-ingresso {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--cor-borda-clara);
+}
+
+.info-ingresso {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.nome-ingresso {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.preco-ingresso {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 3px;
+}
+
+/* --- Estilo do Contador de Quantidade --- */
+.controle-quantidade {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-borda-clara);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.btn-qtd {
+    background-color: transparent;
+    color: var(--cor-texto-claro);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    outline: none;
+}
+
+.btn-qtd:hover:not(:disabled) {
+    background-color: #00375f;
+}
+
+.valor-qtd {
+    padding: 10px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* --- Resumo e Botão Finalizar --- */
+.resumo-total {
+    padding: 20px 0;
+    margin-top: 10px;
+    border-top: 1px solid var(--cor-borda-clara);
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.btn-principal {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--cor-destaque-acao);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.btn-principal:hover:not(:disabled) {
+    background-color: #c0392b;
+}
+
+.btn-principal:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+}
+
+/* Ajuste no cabeçalho */
+#btn-voltar-evento {
+    color: var(--cor-texto-claro);
+    font-weight: normal;
+    background-color: var(--cor-destaque-acao);
+    padding: 5px 10px;
+    border-radius: 4px;
+}

@@ -1,0 +1,166 @@
+/* --- Variáveis (Mantenha as variáveis do seu projeto) --- */
+:root {
+    --cor-primaria: #0e4c6c; 
+    --cor-secundaria: #00bcd4; 
+    --cor-fundo-pagina: #f0f0f0; 
+    --cor-fundo-card: white;
+    --cor-destaque-acao: #e74c3c; /* Vermelho/Laranja para Ações */
+}
+
+/* Base e Container */
+body {
+    background-color: var(--cor-fundo-pagina);
+    min-height: 100vh; /* Ocupa toda a tela */
+}
+
+.container-detalhe {
+    width: 95%;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.bloco-evento {
+    display: flex;
+    gap: 40px;
+    background-color: var(--cor-fundo-card);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    /* Adiciona margem para que o bloco não fique "colado" no cabeçalho */
+    margin-top: 20px;
+}
+
+/* 1. Coluna Esquerda (Imagem) */
+.coluna-esquerda {
+    flex: 0 0 450px; /* Largura fixa para a imagem */
+    position: relative;
+    /* Garante que o conteúdo estático tenha espaço, mesmo se a imagem falhar */
+    min-height: 400px; 
+}
+
+.banner-evento {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute; /* Permite que as infos fiquem por cima */
+}
+
+/* Informações sobrepostas na imagem (sempre visíveis) */
+.info-data-organizador {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2; /* Garante que fique acima da imagem */
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.data-destaque {
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1;
+}
+.data-destaque-hora {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.info-endereco {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2; /* Garante que fique acima da imagem */
+    color: white;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+.info-endereco i {
+    margin-right: 5px;
+}
+
+
+/* 2. Coluna Direita (Detalhes e Ações) - CRÍTICO PARA A VISIBILIDADE */
+.coluna-direita {
+    flex: 1;
+    padding: 30px;
+    padding-left: 0; /* Remove padding extra se houver */
+    min-width: 450px; /* Garante que tenha espaço na direita */
+}
+
+#evento-titulo {
+    font-size: 2.5em;
+    color: var(--cor-primaria);
+    margin-bottom: 5px;
+}
+
+#evento-subtitulo {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.data-hora-local {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 20px;
+}
+.data-hora-local i {
+    color: var(--cor-secundaria);
+    margin-right: 5px;
+}
+.separador {
+    margin: 0 10px;
+}
+
+.secao-descricao h3, .secao-acao h3 {
+    font-size: 1.4em;
+    color: var(--cor-primaria);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+/* Botão de Ação */
+.btn-principal {
+    background-color: var(--cor-destaque-acao); 
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-principal:hover:not([disabled]) {
+    background-color: #c0392b;
+}
+
+.btn-principal i {
+    margin-right: 10px;
+}
+
+/* Favoritos */
+.acao-favorito {
+    margin-top: 25px;
+    color: var(--cor-destaque-acao);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.2s;
+}
+
+.acao-favorito i {
+    font-size: 1.4em;
+    margin-right: 5px;
+}

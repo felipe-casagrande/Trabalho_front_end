@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Pagamento</title>
+    
+    <link rel="stylesheet" href="../css/principal_participante.css"> 
+    <link rel="stylesheet" href="../css/checkout.css"> 
+    <link rel="stylesheet" href="../css/checkout_pagamento.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="../js/checkout_pagamento.js"></script> 
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="principal_participante.html">
+                <img src="../imagens/logo.jpeg" alt="Saqua Events Logo" class="logo-img">
+            </a>
+        </div>
+        <nav class="menu-principal">
+            <a href="checkout_dados.html" class="btn-voltar-checkout">
+                <i class="fas fa-arrow-left"></i> Voltar aos Dados
+            </a>
+        </nav>
+    </header>
+
+    <main class="container-checkout">
+        
+        <div class="coluna-resumo">
+            <h1 class="titulo-secao">Resumo do Pedido</h1>
+            
+            <div id="resumo-detalhado-pagamento">
+                </div>
+
+            <div class="resumo-final">
+                <div class="total-box">
+                    <span class="total-label" id="qtd-total-itens">Total (X itens)</span>
+                    <span id="valor-total-resumo" class="total-valor">R$ 0,00</span>
+                </div>
+            </div>
+            
+            <p class="instrucao-taxa">O parcelamento em 10x é uma simulação sem juros.</p>
+        </div>
+
+        <div class="coluna-pagamento">
+            <h1 class="titulo-secao">Formas de Pagamento</h1>
+            
+            <form id="form-pagamento">
+                <div class="opcoes-pagamento">
+                    <label>
+                        <input type="radio" name="metodo-pagamento" value="cartao" checked>
+                        Cartão de Crédito
+                    </label>
+                    <label>
+                        <input type="radio" name="metodo-pagamento" value="pix">
+                        Pix
+                    </label>
+                </div>
+
+                <div id="detalhes-pagamento">
+                    </div>
+                
+                <div id="secao-parcelamento">
+                    <label for="select-parcelas">Parcelamento:</label>
+                    <select id="select-parcelas" name="parcelamento" required>
+                        </select>
+                    <p class="valor-parcela" id="valor-parcela">1x de R$ 0,00</p>
+                </div>
+
+                <button type="submit" id="btn-finalizar-checkout" class="btn-prosseguir">
+                    <i class="fas fa-lock"></i> Pagar Agora
+                </button>
+            </form>
+        </div>
+
+    </main>
+</body>
+</html>

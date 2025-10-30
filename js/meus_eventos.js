@@ -18,10 +18,12 @@ function toggleDropdown() {
     }
 }
 
+// Configura o clique no botão para chamar a função de toggle
 if (botaoPerfil) {
     botaoPerfil.addEventListener('click', toggleDropdown);
 }
 
+// Fecha o dropdown se o usuário clicar em qualquer lugar fora dele
 document.addEventListener('click', function(event) {
     if (containerPerfil && opcoesPerfil) {
         if (!containerPerfil.contains(event.target)) {
@@ -67,14 +69,13 @@ function carregarNomeUsuario() {
 
 
 // =================================================================
-// 2. Lógica de Carregamento e Exibição dos Eventos
+// 2. Lógica de Carregamento e Exibição dos Eventos (FILTRAGEM POR ORGANIZADOR)
 // =================================================================
 
 function carregarEventos() {
     const container = document.getElementById('lista-eventos-container');
     const eventosSalvos = JSON.parse(localStorage.getItem('eventosSaqua')) || [];
     
-    // Filtra apenas os eventos criados pelo usuário logado 
     const organizadorLogado = localStorage.getItem('usuarioLogadoNome');
     const meusEventos = eventosSalvos.filter(evento => evento.organizador === organizadorLogado);
 
@@ -88,11 +89,11 @@ function carregarEventos() {
         return;
     }
 
+    container.innerHTML = ''; 
     meusEventos.forEach(evento => {
         const eventoCard = document.createElement('div');
         eventoCard.classList.add('card-evento');
         
-        // Formatação simples de data/hora
         const dataFormatada = new Date(evento.dataInicio).toLocaleDateString('pt-BR');
         
         eventoCard.innerHTML = `
@@ -108,8 +109,7 @@ function carregarEventos() {
                 <p class="card-categoria">${evento.categoria}</p>
 
                 <div class="card-acoes">
-                    <a href="#" class="btn-detalhes"><i class="fas fa-eye"></i> Visualizar</a>
-                    <a href="#" class="btn-editar"><i class="fas fa-edit"></i> Editar</a>
+                    <a href="gerenciar_evento.html?id=${evento.id}" class="btn-editar"><i class="fas fa-edit"></i> Editar</a>
                 </div>
             </div>
         `;
@@ -123,5 +123,5 @@ function carregarEventos() {
 // =================================================================
 document.addEventListener('DOMContentLoaded', () => {
     carregarNomeUsuario();
-    carregarEventos(); // Chama a função para listar os eventos
+    carregarEventos(); 
 });

@@ -264,3 +264,61 @@ a {
 .mensagem-nenhum-evento.hidden {
     display: none;
 }
+/* Estilo para posicionar o botão de Favoritar no card da home */
+.card-evento .card-imagem-container {
+    position: relative;
+}
+
+.btn-favoritar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semitransparente */
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    transition: transform 0.2s;
+}
+
+.btn-favoritar:hover {
+    transform: scale(1.1);
+}
+
+.btn-favoritar i {
+    font-size: 1.3em;
+    /* A cor vermelha do coração está definida no HTML inline (#e74c3c) */
+}/* --- Estilos para a Barra de Pesquisa (ADICIONE NO FINAL) --- */
+.barra-pesquisa-container {
+    width: 100%;
+    max-width: 600px; /* Limita a largura para combinar com o bloco de saudação */
+    margin: 20px 0 30px 0; /* Espaçamento superior e inferior */
+    position: relative;
+    /* Adicionado para garantir que o container da pesquisa se centralize no main */
+    align-self: center; 
+}
+
+.input-pesquisa {
+    width: 100%;
+    padding: 12px 40px 12px 15px; /* Padding extra à direita para o ícone */
+    border: 1px solid var(--cor-cinza-claro);
+    border-radius: 25px;
+    font-size: 1em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+.icone-pesquisa {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none; /* Garante que o ícone não interfira no clique do input */
+}

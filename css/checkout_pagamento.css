@@ -1,0 +1,89 @@
+/* --- Estilos Específicos para a Tela de Pagamento --- */
+
+.coluna-pagamento {
+    flex: 2;
+    min-width: 550px;
+    background-color: var(--cor-fundo-card);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 1. Escolha de Pagamento */
+.opcoes-pagamento {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+.opcoes-pagamento label {
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 2. Formulários de Pagamento (Cartão/Pix) */
+#detalhes-pagamento {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    background-color: #fafafa;
+}
+
+.campo-linha-tres {
+    display: flex;
+    gap: 10px;
+}
+
+.campo-linha-tres input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para o PIX QR Code (Simulação) */
+.pix-detalhes {
+    text-align: center;
+}
+.pix-detalhes h4 {
+    margin-bottom: 10px;
+    color: var(--cor-primaria);
+}
+
+.qr-code-box {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    border: 5px solid #eee;
+    margin: 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    color: #555;
+    font-weight: bold;
+}
+
+.instrucao-pix {
+    font-size: 0.9em;
+    color: #777;
+}
+
+
+/* 3. Parcelamento */
+#secao-parcelamento select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.valor-parcela {
+    font-weight: bold;
+    color: var(--cor-destaque-acao);
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
