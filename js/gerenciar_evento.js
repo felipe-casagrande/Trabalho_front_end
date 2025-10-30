@@ -259,4 +259,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formGerenciamento) {
         formGerenciamento.addEventListener('submit', salvarGerenciamento);
     }
+    
+    // NOVO: Listener para atualização visual imediata do status (SOLUÇÃO)
+    const selectStatus = document.getElementById('select-status');
+    const statusAtualSpan = document.getElementById('status-atual');
+    
+    if (selectStatus && statusAtualSpan) {
+        selectStatus.addEventListener('change', function() {
+            const novoStatus = this.value;
+            
+            // 1. Atualiza o texto
+            statusAtualSpan.textContent = novoStatus;
+            
+            // 2. Atualiza a classe para mudar a cor/estilo (usa o valor em minúsculas)
+            statusAtualSpan.className = 'tag-status ' + novoStatus.toLowerCase();
+        });
+    }
 });

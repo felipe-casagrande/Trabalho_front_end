@@ -32,5 +32,5 @@ document.getElementById('form-cadastro').addEventListener('submit', function(eve
 
     // 6. Feedback e redirecionamento para o login
     alert("Cadastro realizado com sucesso! Agora faça login.");
-    window.location.href = "login.html";
+    window.location.href = "../index.html";
 });
