@@ -17,20 +17,21 @@ document.getElementById('form-login').addEventListener('submit', function(event)
     // 4. Lógica de Verificação e Redirecionamento
     if (usuarioEncontrado) {
         
-        // NOVO CÓDIGO: Armazena o NOME do usuário logado
+        // Armazena o NOME do usuário logado
         localStorage.setItem('usuarioLogadoNome', usuarioEncontrado.nome);
         
-        // Armazena o tipo de usuário logado para uso na aplicação (ex: cabeçalho)
+        // Armazena o tipo de usuário logado
         localStorage.setItem('usuarioLogadoTipo', usuarioEncontrado.tipo);
         
         if (usuarioEncontrado.tipo === 'Participante') {
             // REDIRECIONAMENTO para a tela de participante
             alert("Login de Participante realizado com sucesso!");
-            window.location.href = "principal_participante.html"; 
+            window.location.href = "principal_participante.html";
             
         } else if (usuarioEncontrado.tipo === 'Organizador') {
-            // MENSAGEM para o tipo Organizador
-            alert("Login de Organizador realizado com sucesso! Mas a tela de Organizador ainda não está pronta.");
+            // REDIRECIONAMENTO para a tela do Organizador (Alteração aplicada aqui)
+            alert("Login de Organizador realizado com sucesso!");
+            window.location.href = "principal_organizador.html";
             
         } else {
             // Tipo não reconhecido

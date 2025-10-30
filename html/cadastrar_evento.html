@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Novo Evento</title>
+    <link rel="stylesheet" href="../css/cadastrar_evento.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="../js/cadastro_evento.js"></script> 
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="principal_organizador.html">
+                <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <div class="menu-perfil" id="perfil-dropdown-container">
+                <div class="icone-perfil" id="botao-perfil">
+                    <i class="fas fa-user-circle"></i> Meu Perfil                                          
+                </div>
+                
+                <div class="dropdown-perfil hidden" id="opcoes-perfil">
+                    <div class="info-usuario">
+                        <span class="avatar-sigla">NU</span> <span id="nome-usuario-perfil">Nome Organizador</span>
+                    </div>
+                    <a href="login.html" class="btn-sair"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                </div>
+        </div>
+    </header>
+
+    <main class="container-principal">
+        <h1>Criar Evento</h1>
+        <form id="form-cadastro-evento">
+            
+            <section class="secao-info-basicas">
+                <h3>Informações básicas</h3>
+                <p>Adicione as principais informações do evento</p>
+                
+                <div class="campo-linha-unica">
+                    <label for="nome-evento">Nome do Evento*</label>
+                    <input type="text" id="nome-evento" name="nome-evento" required>
+                </div>
+
+                <div class="linha-campos">
+                    <div class="campo-metade">
+                        <label for="descricao">Descrição (opcional)</label>
+                        <textarea id="descricao" name="descricao" rows="2"></textarea>
+                    </div>
+                    <div class="campo-metade">
+                        <label for="categoria">Categoria do evento:</label>
+                        <select id="categoria" name="categoria">
+                            <option value="Educacional">Educacional</option>
+                            <option value="Show">Show</option>
+                            <option value="Esporte">Esporte</option>
+                            <option value="Cultura">Cultura</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="titulo-linha-datas">Datas e Horários*</div>
+                <div class="linha-campos datas-horarios">
+                    <div class="campo-quarto">
+                        <label for="data-inicio">Data de início*</label>
+                        <input type="date" id="data-inicio" name="data-inicio" required>
+                    </div>
+                    <div class="campo-quarto">
+                        <label for="hora-inicio">Horário de início*</label>
+                        <input type="time" id="hora-inicio" name="hora-inicio" required>
+                    </div>
+                    <div class="campo-quarto">
+                        <label for="data-termino">Data do término*</label>
+                        <input type="date" id="data-termino" name="data-termino" required>
+                    </div>
+                    <div class="campo-quarto">
+                        <label for="hora-termino">Hora do término*</label>
+                        <input type="time" id="hora-termino" name="hora-termino" required>
+                    </div>
+                </div>
+
+            </section>
+            
+            <section class="secao-localizacao">
+                
+                <div class="titulo-linha-local">Local e Capacidade</div>
+                <div class="linha-campos">
+                    <div class="campo-metade">
+                        <label for="local">Local</label>
+                        <input type="text" id="local" name="local" placeholder="Ex: Universidade de Vassourass - Campus 3 Saquarema">
+                    </div>
+                    <div class="campo-metade">
+                        <label for="capacidade">Capacidade (máx. pessoas)</label>
+                        <input type="number" id="capacidade" name="capacidade" placeholder="Ex: 2000">
+                    </div>
+                </div>
+                
+                <div class="campo-linha-unica">
+                    <label for="endereco">Endereço</label>
+                    <input type="text" id="endereco" name="endereco" placeholder="Ex: Tv. do Ingá, 292 - Gravatá, Saquarema - RJ">
+                </div>
+            </section>
+            
+            <div class="campo-linha-unica">
+                <label for="imagem-url">URL da Imagem (opcional)</label>
+                <input type="url" id="imagem-url" name="imagem-url" placeholder="URL para banner do evento">
+            </div>
+
+            <button type="submit">Publicar Evento</button>
+        </form>
+        <p><a href="principal_organizador.html">Voltar para o Painel</a></p>
+    </main>
+</body>
+</html>

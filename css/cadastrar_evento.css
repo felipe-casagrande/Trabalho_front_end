@@ -1,0 +1,263 @@
+/* --- Variáveis de Cor --- */
+:root {
+    --cor-primaria: #0e4c6c; 
+    --cor-fundo: #f0f0f0; 
+    --cor-texto: #333;
+    --cor-texto-claro: white;
+    --cor-borda-input: #dcdcdc; 
+    --cor-botao-principal: #00375f;
+    --cor-fundo-pagina: #e9edf7; 
+}
+
+/* --- Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo-pagina);
+    color: var(--cor-texto);
+}
+
+/* --- 1. Cabeçalho --- */
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--cor-texto-claro);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container .logo-img {
+    height: 40px; 
+    width: auto;
+}
+
+/* Menu de Perfil (Dropdown) - Estilos para o componente de perfil */
+.menu-perfil {
+    position: relative;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.icone-perfil {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--cor-borda-input); 
+    color: var(--cor-primaria);
+    font-weight: bold;
+}
+
+.dropdown-perfil {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    width: 200px;
+    background-color: var(--cor-texto-claro);
+    border: 1px solid var(--cor-borda-input);
+    border-top: none; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 4px 4px;
+    padding: 10px 0;
+}
+
+.dropdown-perfil.hidden { display: none; }
+.dropdown-perfil.visible { display: block; }
+
+.info-usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    font-weight: bold;
+    color: var(--cor-texto);
+}
+
+.avatar-sigla {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+}
+
+.btn-sair {
+    display: block;
+    padding: 10px 15px;
+    margin-top: 5px;
+    color: #e74c3c; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.btn-sair:hover {
+    background-color: var(--cor-fundo);
+}
+
+/* --- 2. Container Principal e Título --- */
+.container-principal {
+    width: 100%;
+    max-width: 1000px; 
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+/* --- 3. Estilização do Formulário e Seções --- */
+#form-cadastro-evento {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.secao-info-basicas p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.titulo-linha-datas, .titulo-linha-local {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* --- 4. Layout dos Campos (Grid/Flexbox) --- */
+
+label {
+    display: block;
+    margin-bottom: 5px; 
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    border-radius: 4px;
+    border: 1px solid var(--cor-borda-input); 
+    padding: 10px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    margin-bottom: 20px; /* Espaçamento entre os campos */
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; 
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+
+/* Layout para campos lado a lado */
+.linha-campos {
+    display: flex;
+    gap: 10px; 
+    margin-bottom: 10px;
+}
+
+.campo-metade {
+    flex: 1; 
+}
+
+.campo-quarto {
+    flex: 0 0 25%; 
+    /* CORREÇÃO DE ALINHAMENTO: Adiciona flexbox para o label/input interno */
+    display: flex;
+    flex-direction: column; 
+}
+
+.campo-linha-unica input, .campo-linha-unica select, .campo-linha-unica textarea {
+    margin-bottom: 15px; 
+}
+
+/* Ajuste para input com asterisco de "obrigatório" */
+label:after {
+    content: '*';
+    color: red; 
+    margin-left: 2px;
+}
+
+/* Campos opcionais ou sem asterisco no mockup */
+#descricao + label:after, 
+#categoria + label:after, 
+#local + label:after, 
+#capacidade + label:after, 
+#endereco + label:after,
+#imagem-url + label:after,
+#descricao-detalhada + label:after {
+    content: none;
+}
+
+
+/* --- 5. Botão de Publicar --- */
+form button {
+    background-color: var(--cor-botao-principal);
+    color: var(--cor-texto-claro);
+    padding: 10px;
+    border-radius: 4px; 
+    border: none;
+    width: 100%;
+    margin-top: 40px;
+    cursor: pointer;
+    height: 45px;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: var(--cor-primaria);
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+p a {
+    color: var(--cor-botao-principal);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* --- CORREÇÃO FINAL: Alinhamento e Espaçamento para Datas --- */
+
+/* Remove a margem inferior padrão dos inputs dentro de linha-campos, corrigindo o desalinhamento vertical. */
+.linha-campos input, .linha-campos select, .linha-campos textarea {
+    margin-bottom: 0; 
+}
+
+/* Garante o espaçamento abaixo do grupo de datas e horários */
+.linha-campos.datas-horarios {
+    margin-bottom: 25px; 
+}

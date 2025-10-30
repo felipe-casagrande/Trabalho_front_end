@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Eventos Favoritos | Saqua Events</title>
+    
+    <link rel="stylesheet" href="../css/favoritos.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ====== CABEÇALHO IGUAL AO principal_participante.html ====== -->
+    <header class="cabecalho">
+        <div class="logo-container">
+            <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
+        </div>
+        
+        <nav class="menu-principal">
+            <a href="#" class="item-menu">
+                Meus Ingressos
+                <img src="../imagens/icones/ingressos-de-cinema.png" alt="Meus Ingressos" class="icone-menu">
+            </a>
+            
+            <a href="#" class="item-menu">
+                Favoritos
+                <img src="../imagens/icones/favorito.png" alt="Favoritos" class="icone-menu">
+            </a>
+            
+            <!-- ====== MENU DE PERFIL (IDÊNTICO AO principal_participante) ====== -->
+            <div class="menu-perfil" id="perfil-dropdown-container">
+                <div class="icone-perfil" id="botao-perfil">
+                    <i class="fas fa-user-circle"></i> Meu Perfil                                          
+                </div>
+                
+                <div class="dropdown-perfil hidden" id="opcoes-perfil">
+                    <div class="info-usuario">
+                        <span class="avatar-sigla">NU</span> 
+                        <span id="nome-usuario-perfil">Nome Usuário</span>
+                    </div>
+                    <a href="login.html" class="btn-sair">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ====== CONTEÚDO PRINCIPAL ====== -->
+    <main class="container">
+        <div class="favoritos-titulo-box">
+            <h1 class="favoritos-titulo">Favoritos</h1>
+        </div>
+
+        <div class="eventos-grid" id="lista-favoritos"></div>
+
+        <div id="vazio" class="mensagem-vazia" style="display: none;">
+            <p>Você ainda não tem eventos favoritos. Navegue e adicione alguns!</p>
+            <a href="principal_participante.html" class="btn-explorar">Explorar Eventos</a>
+        </div>
+    </main>
+
+    <div class="design-detail-bottom"></div>
+
+    <script src="../js/favoritos.js"></script>
+</body>
+</html>
