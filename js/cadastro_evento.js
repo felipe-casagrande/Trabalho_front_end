@@ -100,6 +100,11 @@ function inicializarCadastroEvento() {
         const capacidade = document.getElementById('capacidade').value;
         const endereco = document.getElementById('endereco').value;
         const imagemUrl = document.getElementById('imagem-url').value;
+        
+        // NOVO: Coleta dados do organizador logado
+        const organizadorNome = localStorage.getItem('usuarioLogadoNome') || 'Organizador Desconhecido';
+        const organizadorEmail = localStorage.getItem('usuarioLogadoEmail') || '';
+
 
         // 2. Coleta os dados dos ingressos
         const tiposIngressos = [];
@@ -153,7 +158,8 @@ function inicializarCadastroEvento() {
             capacidade: parseInt(capacidade) || null,
             endereco,
             imagem: imagemUrl || '../imagens/eventos/default.jpg', 
-            organizador: localStorage.getItem('usuarioLogadoNome') || 'Organizador Desconhecido',
+            organizador: organizadorNome, // Nome para exibição
+            organizadorEmail: organizadorEmail, // NOVO: E-mail para filtro de propriedade
             ingressos: tiposIngressos // NOVO: Adiciona a lista de ingressos
         };
 

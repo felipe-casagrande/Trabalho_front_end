@@ -50,7 +50,7 @@ function adicionarCampoIngresso(ingresso = null) {
 }
 
 // =================================================================
-// 4. Lógica de Carregamento de Dados e Perfil
+// 4. Lógica de Carregamento de Dados e Perfil (AJUSTADO PARA EMAIL)
 // =================================================================
 function carregarEventoParaGerenciamento() {
     // Pega o ID do evento da URL
@@ -66,6 +66,15 @@ function carregarEventoParaGerenciamento() {
     // Busca os eventos no localStorage
     const eventos = JSON.parse(localStorage.getItem('eventosSaqua')) || [];
     eventoOriginal = eventos.find(e => e.id === eventoIdParaGerenciamento);
+    
+    // NOVO: Verificação de Propriedade
+    const organizadorEmailLogado = localStorage.getItem('usuarioLogadoEmail');
+    if (eventoOriginal.organizadorEmail !== organizadorEmailLogado) {
+        alert("Acesso negado. Este evento não pertence à sua conta de organizador.");
+        window.location.href = "meus_eventos.html";
+        return;
+    }
+
 
     if (!eventoOriginal) {
         alert("Evento não encontrado. Voltando para Meus Eventos.");

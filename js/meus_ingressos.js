@@ -55,8 +55,14 @@ function carregarNomeUsuario() {
     }
 }
 
+// NOVO: Função para obter a chave personalizada de ingressos
+function getIngressosKey() {
+    const email = localStorage.getItem('usuarioLogadoEmail');
+    return email ? `meusIngressos_${email}` : 'meusIngressos_default'; // Chave personalizada
+}
+
 // =================================================================
-// Lógica de Carregamento da Tabela de Ingressos
+// Lógica de Carregamento da Tabela de Ingressos (AJUSTADO PARA PERSONALIZAÇÃO)
 // =================================================================
 
 function carregarTabelaIngressos() {
@@ -64,10 +70,13 @@ function carregarTabelaIngressos() {
     const mensagemVazia = document.getElementById('mensagem-vazia');
     
     // Lista de ingressos comprados (salva no checkout_pagamento.js)
-    const ingressosComprados = JSON.parse(localStorage.getItem('meusIngressos')) || [];
+    const ingressosKey = getIngressosKey(); // Obtém a chave personalizada
+    const ingressosComprados = JSON.parse(localStorage.getItem(ingressosKey)) || [];
     
     if (ingressosComprados.length === 0) {
-        tabelaCorpo.innerHTML = '';
+        // É necessário garantir que a tabela tenha um tbody com ID para funcionar, se não tiver:
+        if (tabelaCorpo) tabelaCorpo.innerHTML = '';
+        
         if (mensagemVazia) mensagemVazia.classList.remove('hidden');
         return;
     }
@@ -75,21 +84,23 @@ function carregarTabelaIngressos() {
     if (mensagemVazia) mensagemVazia.classList.add('hidden');
     
     // Renderiza cada ingresso como uma linha da tabela
-    tabelaCorpo.innerHTML = ingressosComprados.map(ingresso => {
-        // Assume que a data está em formato YYYY-MM-DD
-        const dataFormatada = ingresso.data ? new Date(ingresso.data + 'T00:00:00').toLocaleDateString('pt-BR') : 'Data Indefinida';
-        
-        return `
-            <tr>
-                <td>${ingresso.nomePortador || 'Comprador'}</td>
-                <td>${ingresso.nomeEvento}</td>
-                <td>${dataFormatada}</td>
-                <td>${ingresso.local || 'Local não informado'}</td>
-                <td>${ingresso.setor}</td>
-                <td>${ingresso.horario}</td>
-            </tr>
-        `;
-    }).join('');
+    if (tabelaCorpo) {
+        tabelaCorpo.innerHTML = ingressosComprados.map(ingresso => {
+            // Assume que a data está em formato YYYY-MM-DD
+            const dataFormatada = ingresso.data ? new Date(ingresso.data + 'T00:00:00').toLocaleDateString('pt-BR') : 'Data Indefinida';
+            
+            return `
+                <tr>
+                    <td>${ingresso.nomePortador || 'Comprador'}</td>
+                    <td>${ingresso.nomeEvento}</td>
+                    <td>${dataFormatada}</td>
+                    <td>${ingresso.local || 'Local não informado'}</td>
+                    <td>${ingresso.setor}</td>
+                    <td>${ingresso.horario}</td>
+                </tr>
+            `;
+        }).join('');
+    }
 }
 
 

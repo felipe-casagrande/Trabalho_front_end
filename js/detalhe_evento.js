@@ -56,14 +56,20 @@ function carregarNomeUsuario() {
 }
 
 // =================================================================
-// 2. Lógica de Favoritos
+// 2. Lógica de Favoritos (AJUSTADO PARA PERSONALIZAÇÃO)
 // =================================================================
+function getFavoritosKey() {
+    const email = localStorage.getItem('usuarioLogadoEmail');
+    return email ? `eventosFavoritos_${email}` : 'eventosFavoritos_default'; // Chave personalizada
+}
+
 function getFavoritos() {
-    const favoritos = localStorage.getItem('eventosFavoritos');
+    const favoritos = localStorage.getItem(getFavoritosKey());
     return favoritos ? JSON.parse(favoritos) : [];
 }
 
 function alternarFavorito(eventoId, icone, texto) {
+    const chave = getFavoritosKey(); // Obtém a chave personalizada
     let favoritos = getFavoritos();
     const index = favoritos.indexOf(eventoId);
 
@@ -77,7 +83,7 @@ function alternarFavorito(eventoId, icone, texto) {
         texto.textContent = 'Remover dos Favoritos';
     }
 
-    localStorage.setItem('eventosFavoritos', JSON.stringify(favoritos));
+    localStorage.setItem(chave, JSON.stringify(favoritos));
 }
 
 // =================================================================

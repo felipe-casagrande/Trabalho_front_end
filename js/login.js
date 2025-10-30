@@ -18,13 +18,14 @@ document.getElementById('form-login').addEventListener('submit', function(event)
     if (usuarioEncontrado) {
         
         // CRÍTICO: Limpa qualquer sessão anterior de favoritos que possa estar misturando os contextos
-        // Embora os Favoritos sejam globais, limpamos dados de sessão temporários:
         sessionStorage.removeItem('checkoutData');
         localStorage.removeItem('resumoCompra'); 
 
         // Armazena o NOME e TIPO do usuário logado
         localStorage.setItem('usuarioLogadoNome', usuarioEncontrado.nome);
         localStorage.setItem('usuarioLogadoTipo', usuarioEncontrado.tipo);
+        // NOVO: Salva o e-mail do usuário para personalização dos dados
+        localStorage.setItem('usuarioLogadoEmail', usuarioEncontrado.email); 
         
         if (usuarioEncontrado.tipo === 'Participante') {
             alert("Login de Participante realizado com sucesso!");

@@ -70,20 +70,25 @@ function carregarNomeUsuario() {
 }
 
 // =================================================================
-// 2. Lógica de Favoritos e Eventos
+// 2. Lógica de Favoritos e Eventos (AJUSTADO PARA PERSONALIZAÇÃO)
 // =================================================================
+
+function getFavoritosKey() {
+    const email = localStorage.getItem('usuarioLogadoEmail');
+    return email ? `eventosFavoritos_${email}` : 'eventosFavoritos_default'; // Chave personalizada
+}
 
 function getEventosSalvos() {
     return JSON.parse(localStorage.getItem('eventosSaqua')) || [];
 }
 
 function getFavoritos() {
-    const favoritos = localStorage.getItem('eventosFavoritos');
+    const favoritos = localStorage.getItem(getFavoritosKey());
     return favoritos ? JSON.parse(favoritos) : [];
 }
 
 function setFavoritos(listaIds) {
-    localStorage.setItem('eventosFavoritos', JSON.stringify(listaIds));
+    localStorage.setItem(getFavoritosKey(), JSON.stringify(listaIds));
 }
 
 function removerFavorito(eventoId) {

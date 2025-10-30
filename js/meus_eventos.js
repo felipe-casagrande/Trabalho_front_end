@@ -69,7 +69,7 @@ function carregarNomeUsuario() {
 
 
 // =================================================================
-// 2. Lógica de Carregamento e Exibição dos Eventos (FILTRAGEM POR ORGANIZADOR)
+// 2. Lógica de Carregamento e Exibição dos Eventos (FILTRAGEM POR ORGANIZADOR) (AJUSTADO PARA EMAIL)
 // =================================================================
 
 function carregarEventos() {
@@ -84,8 +84,9 @@ function carregarEventos() {
     const container = document.getElementById('lista-eventos-container');
     const eventosSalvos = JSON.parse(localStorage.getItem('eventosSaqua')) || [];
     
-    const organizadorLogado = localStorage.getItem('usuarioLogadoNome');
-    const meusEventos = eventosSalvos.filter(evento => evento.organizador === organizadorLogado);
+    // NOVO: Filtra pelo e-mail do organizador logado
+    const organizadorEmailLogado = localStorage.getItem('usuarioLogadoEmail');
+    const meusEventos = eventosSalvos.filter(evento => evento.organizadorEmail === organizadorEmailLogado);
 
     if (meusEventos.length === 0) {
         container.innerHTML = `

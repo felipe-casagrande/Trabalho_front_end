@@ -10,6 +10,12 @@ function formatarMoeda(valor) {
     return `R$ ${valor.toFixed(2).replace('.', ',')}`;
 }
 
+// NOVO: Função para obter a chave personalizada de ingressos
+function getIngressosKey() {
+    const email = localStorage.getItem('usuarioLogadoEmail');
+    return email ? `meusIngressos_${email}` : 'meusIngressos_default'; // Chave personalizada
+}
+
 // =================================================================
 // 1. Lógica de Carregamento e Interface
 // =================================================================
@@ -141,7 +147,7 @@ function configurarParcelamento() {
 
 
 // =================================================================
-// 4. Lógica de Finalizar (Simulação da Transação)
+// 4. Lógica de Finalizar (Simulação da Transação) (COM ATUALIZAÇÃO DE ESTOQUE)
 // =================================================================
 
 function finalizarTransacao(event) {
@@ -160,11 +166,8 @@ function finalizarTransacao(event) {
     const totalCompra = formatarMoeda(valorTotal);
     const parcelas = (metodo === 'cartao') ? `${parcelasSelecionadas}x` : '1x (PIX)';
     
-    // 2. Monta o Ingresso Final (Ingressos Comprados + Dados do Checkout)
+    // 2. Monta o Ingresso Final
     const ingressosCompradosFinal = checkoutData.portadores.map(portador => {
-        // Encontra o preço do lote original para o resumo
-        const itemLote = checkoutData.ingressos.find(i => i.lote === portador.lote);
-        
         return {
             nomeEvento: checkoutData.nomeEvento,
             data: checkoutData.evento.dataInicio,
@@ -175,10 +178,51 @@ function finalizarTransacao(event) {
         };
     });
     
+    // ======================================================
+    // ** LÓGICA CRÍTICA: ATUALIZAÇÃO DO ESTOQUE **
+    // ======================================================
+    let eventos = JSON.parse(localStorage.getItem('eventosSaqua')) || [];
+    const indexEvento = eventos.findIndex(e => e.id === checkoutData.idEvento);
+    
+    if (indexEvento !== -1) {
+        const eventoComprado = eventos[indexEvento];
+        
+        // Percorre os ingressos comprados no resumo de checkout
+        checkoutData.ingressos.forEach(itemComprado => {
+            
+            // Encontra o lote correspondente no objeto original do evento
+            const loteIndex = eventoComprado.ingressos.findIndex(
+                lote => lote.nome === itemComprado.lote
+            );
+            
+            if (loteIndex !== -1) {
+                const loteOriginal = eventoComprado.ingressos[loteIndex];
+                
+                // Atualiza a quantidade vendida
+                loteOriginal.quantidadeVendida += itemComprado.quantidade;
+                
+                // (Opcional) A quantidade total disponível deve ser mantida, mas por segurança
+                // garantimos que a quantidade vendida não exceda a total (embora o JS de compra previna isso)
+                if (loteOriginal.quantidadeVendida > loteOriginal.quantidadeTotal) {
+                     loteOriginal.quantidadeVendida = loteOriginal.quantidadeTotal;
+                }
+                
+                // Recalcula o objeto no array
+                eventoComprado.ingressos[loteIndex] = loteOriginal;
+            }
+        });
+        
+        // Salva a lista de eventos (com estoque atualizado) de volta no localStorage
+        eventos[indexEvento] = eventoComprado;
+        localStorage.setItem('eventosSaqua', JSON.stringify(eventos));
+    }
+    // ======================================================
+
     // 3. Simula a emissão dos ingressos (Atualiza a lista de ingressos do usuário no localStorage)
-    let meusIngressos = JSON.parse(localStorage.getItem('meusIngressos')) || [];
+    const ingressosKey = getIngressosKey(); // Obtém a chave personalizada
+    let meusIngressos = JSON.parse(localStorage.getItem(ingressosKey)) || [];
     meusIngressos.push(...ingressosCompradosFinal);
-    localStorage.setItem('meusIngressos', JSON.stringify(meusIngressos));
+    localStorage.setItem(ingressosKey, JSON.stringify(meusIngressos));
     
     
     // 4. Feedback e Limpeza

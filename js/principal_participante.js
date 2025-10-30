@@ -72,17 +72,23 @@ function configurarMenuPerfil() {
 
 
 // =================================================================
-// 2. Lógica de Favoritos
+// 2. Lógica de Favoritos (AJUSTADO PARA PERSONALIZAÇÃO)
 // =================================================================
 
+function getFavoritosKey() {
+    const email = localStorage.getItem('usuarioLogadoEmail');
+    return email ? `eventosFavoritos_${email}` : 'eventosFavoritos_default'; // Chave personalizada
+}
+
 function getFavoritos() {
-    const favoritos = localStorage.getItem('eventosFavoritos');
+    const favoritos = localStorage.getItem(getFavoritosKey());
     return favoritos ? JSON.parse(favoritos) : [];
 }
 
 function toggleFavorito(eventoId, iconElement) {
     const idNum = parseInt(eventoId);
     let favoritosAtuais = getFavoritos();
+    const chave = getFavoritosKey(); // Obtém a chave personalizada
     
     if (favoritosAtuais.includes(idNum)) {
         favoritosAtuais = favoritosAtuais.filter(id => id !== idNum);
@@ -96,7 +102,7 @@ function toggleFavorito(eventoId, iconElement) {
         alert('Evento adicionado aos favoritos!');
     }
     
-    localStorage.setItem('eventosFavoritos', JSON.stringify(favoritosAtuais));
+    localStorage.setItem(chave, JSON.stringify(favoritosAtuais));
 }
 
 // =================================================================
