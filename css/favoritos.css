@@ -1,21 +1,18 @@
-/* Variáveis de Cor */
+/* Importa variáveis globais e de cores do principal_participante.css */
+@import url('principal_participante.css');
+
 :root {
-    --cor-fundo-principal: #e0e0f2; /* Lilás suave */
-    --cor-fundo-card-info: #799aae; /* Azul acinzentado */
-    --cor-texto-principal: #333;
-    --cor-coracao-favorito: #ff0000;
-    --cor-azul-escuro: #002244; /* Detalhes e perfil */
-    --cor-link-menu: #444; /* Cor para links do menu */
+    /* Manter as variáveis do principal_participante */
+    --cor-fundo-pagina: var(--cor-fundo); 
+    --cor-texto-principal: var(--cor-texto);
+    --cor-azul-escuro: var(--cor-primaria);
+    --cor-coracao-favorito: var(--cor-destaque-acao);
 }
 
-/* --- Estilos Globais e Fundo --- */
+/* --- Estilos Globais e Fundo (Mantidos) --- */
 body {
-    font-family: Arial, sans-serif;
-    background-color: var(--cor-fundo-principal);
+    background-color: var(--cor-fundo-pagina);
     color: var(--cor-texto-principal);
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
 }
 
 .container {
@@ -24,134 +21,13 @@ body {
     padding: 20px 20px 80px 20px;
 }
 
-/* ======================================================= */
-/* --- CORREÇÃO: Estilos do Cabeçalho e Menu (principal_participante) --- */
-/* ======================================================= */
-
-.cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    background-color: white; /* Cor do cabeçalho da sua outra página */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* --- Detalhe de Design (Forma Orgânica) - Removido para simplificar o fundo --- */
+.design-detail-bottom {
+    display: none; 
 }
 
-.logo-container .logo-img {
-    height: 40px; 
-    width: auto;
-}
 
-.menu-principal {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.item-menu {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--cor-link-menu);
-    font-weight: bold;
-    font-size: 1em;
-    transition: color 0.2s;
-}
-
-.item-menu:hover {
-    color: var(--cor-azul-escuro);
-}
-
-.icone-menu {
-    width: 20px;
-    height: 20px;
-    margin-left: 8px;
-}
-
-/* --- Menu de Perfil (Dropdown) --- */
-
-.menu-perfil {
-    position: relative; 
-    display: inline-block;
-}
-
-.icone-perfil {
-    background-color: var(--cor-azul-escuro);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: 1em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.dropdown-perfil {
-    position: absolute;
-    top: 100%; 
-    right: 0;
-    width: 200px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 100; 
-    padding: 15px;
-    margin-top: 5px; 
-    text-align: left; 
-}
-
-.dropdown-perfil.hidden {
-    display: none;
-}
-
-.dropdown-perfil.visible {
-    display: block;
-}
-
-.info-usuario {
-    display: flex;
-    align-items: center;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    font-weight: bold;
-}
-
-.avatar-sigla {
-    width: 30px;
-    height: 30px;
-    background-color: var(--cor-fundo-card-info);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    font-size: 0.8em;
-}
-
-.btn-sair {
-    display: block;
-    padding: 5px 0;
-    color: #dc3545; 
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: color 0.2s;
-}
-
-.btn-sair:hover {
-    color: #a71d2a;
-    text-decoration: underline;
-}
-
-/* ======================================================= */
-/* --- FIM DOS ESTILOS DO CABEÇALHO --- */
-/* ======================================================= */
-
-
-/* --- Título "Favoritos" com Fundo de Balão --- */
+/* 1. Título "Favoritos" com Fundo de Balão (Padronizado) */
 .favoritos-titulo-box {
     text-align: center;
     margin: 40px 0;
@@ -161,31 +37,38 @@ body {
     display: inline-block;
     background-color: white;
     padding: 10px 40px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Mais quadrado para combinar com o resto do projeto */
+    border: 1px solid var(--cor-cinza-claro);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1.8em;
     font-weight: bold;
-    color: var(--cor-texto-principal);
+    color: var(--cor-azul-escuro);
 }
 
-/* --- Layout da Grade de Eventos --- */
+/* 2. Layout da Grade (Deve combinar com principal_participante.css) */
 .eventos-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    /* Usa a mesma lógica de grade dos cards de evento */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
     gap: 30px;
     justify-items: center;
 }
 
-/* --- Estilos do Card --- */
+/* 3. Estilos do Card (Adotando o padrão moderno de CARD-EVENTO) */
+
 .evento-card {
+    /* Este é o card que o JS está injetando */
     width: 100%; 
-    max-width: 300px; 
     background-color: white; 
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
     cursor: pointer;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
 }
 
 .card-imagem-container {
@@ -194,44 +77,49 @@ body {
 
 .card-imagem-container img {
     width: 100%;
-    height: auto;
+    height: 180px; /* Altura fixa para padronizar com a home */
+    object-fit: cover;
     display: block;
 }
 
-/* Ícone/Botão de coração (para remover) */
-.favorito-icon {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: var(--cor-coracao-favorito); 
-    font-size: 1.8em;
-    z-index: 10;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-}
-
 .card-content {
-    background-color: var(--cor-fundo-card-info); 
+    /* Estilo simples e claro, sem o fundo azulado antigo */
+    background-color: white; 
     padding: 15px;
-    color: white; 
+    color: var(--cor-texto); 
 }
 
 .card-title {
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-weight: bold;
     margin: 0 0 5px 0;
-    line-height: 1.3;
+    color: var(--cor-azul-escuro);
 }
 
 .card-local, .card-data {
     font-size: 0.9em;
+    color: #555;
     margin: 0;
-    line-height: 1.3;
 }
 
-/* --- Estilo da Mensagem Vazia --- */
+.favorito-icon {
+    /* Estilo do coração de remoção (padroniza a cor) */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: var(--cor-coracao-favorito); 
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    border: none;
+}
+
+/* --- Estilo da Mensagem Vazia (Mantida) --- */
 .mensagem-vazia {
     text-align: center;
     padding: 50px;
@@ -239,26 +127,8 @@ body {
     border-radius: 8px;
     margin-top: 50px;
 }
-
-.btn-explorar {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: var(--cor-azul-escuro);
-    color: white;
+/* Adicione no seu favoritos.css */
+.evento-card-link {
     text-decoration: none;
-    border-radius: 5px;
-}
-
-/* --- Detalhe de Design (Forma Orgânica) --- */
-.design-detail-bottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 250px; 
-    height: 250px; 
-    background-color: var(--cor-azul-escuro);
-    border-top-right-radius: 50%; 
-    transform: rotate(15deg); 
-    z-index: -1; 
+    color: inherit;
 }

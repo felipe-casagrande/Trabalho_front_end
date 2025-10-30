@@ -3,42 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Ingressos | Saqua Events</title>
-    
+    <title>Meus Eventos | Organizador</title>
     <link rel="stylesheet" href="../css/principal_participante.css"> 
-    <link rel="stylesheet" href="../css/meus_ingressos.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script defer src="../js/meus_ingressos.js"></script> 
+    <link rel="stylesheet" href="../css/meus_eventos.css"> 
+    <script defer src="../js/meus_eventos.js"></script> 
 </head>
 <body>
     <header class="cabecalho">
         <div class="logo-container">
-            <a href="principal_participante.html">
+            <a href="principal_organizador.html">
                 <img src="../imagens/logo.jpeg" alt="Saqua Eventos Logo" class="logo-img">
             </a>
         </div>
         
         <nav class="menu-principal">
             
-            <a href="#" class="item-menu item-ativo">
-                Meus Ingressos
-                <i class="fas fa-ticket-alt" style="color: #0e4c6c;"></i> 
+            <a href="cadastrar_evento.html" class="item-menu">
+                Cadastrar Evento
+                <i class="fas fa-plus-circle" style="color: #0e4c6c;"></i> 
             </a>
             
-            <a href="favoritos.html" class="item-menu">
-                Favoritos
-                <i class="fas fa-star" style="color: #0e4c6c;"></i>
+            <a href="meus_eventos.html" class="item-menu item-ativo">
+                Meus Eventos
+                <i class="fas fa-calendar-alt" style="color: #0e4c6c;"></i>
             </a>
             
             <div class="menu-perfil" id="perfil-dropdown-container">
-                
                 <div class="icone-perfil" id="botao-perfil">
                     <i class="fas fa-user-circle"></i> Meu Perfil                                          
                 </div>
                 
                 <div class="dropdown-perfil hidden" id="opcoes-perfil">
                     <div class="info-usuario">
-                        <span class="avatar-sigla">NU</span> <span id="nome-usuario-perfil">Nome Usuário</span>
+                        <span class="avatar-sigla">OG</span> <span id="nome-usuario-perfil">Organizador</span>
                     </div>
                     <a href="login.html" class="btn-sair"><i class="fas fa-sign-out-alt"></i> Sair</a>
                 </div>
@@ -46,29 +44,12 @@
         </nav>
     </header>
 
-    <main class="container-ingressos">
-        <h1 class="titulo-pagina">Meus Ingressos</h1>
+    <main class="conteudo-principal">
+        <h1>Eventos Criados</h1>
         
-        <div class="tabela-ingressos-container">
-            <table class="tabela-ingressos">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Evento</th>
-                        <th>Data</th>
-                        <th>Onde</th>
-                        <th>Setor</th>
-                        <th>Horário</th>
-                    </tr>
-                </thead>
-                <tbody id="corpo-tabela-ingressos">
-                    </tbody>
-            </table>
-            
-            <div class="mensagem-vazia hidden" id="mensagem-vazia">
-                <p>Você ainda não comprou ingressos. <a href="principal_participante.html">Explore eventos!</a></p>
+        <div class="lista-eventos" id="lista-eventos-container">
             </div>
-        </div>
+
     </main>
 </body>
 </html>

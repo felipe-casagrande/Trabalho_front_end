@@ -73,6 +73,14 @@ function carregarNomeUsuario() {
 // =================================================================
 
 function carregarEventos() {
+    // CRÍTICO: TRAVA DE SEGURANÇA PARA GARANTIR QUE APENAS ORGANIZADORES VEJAM ESTA TELA
+    const tipoUsuario = localStorage.getItem('usuarioLogadoTipo');
+    if (tipoUsuario !== 'Organizador') {
+        // Redireciona para a home do participante se o tipo for errado
+        window.location.href = "principal_participante.html";
+        return;
+    }
+    
     const container = document.getElementById('lista-eventos-container');
     const eventosSalvos = JSON.parse(localStorage.getItem('eventosSaqua')) || [];
     

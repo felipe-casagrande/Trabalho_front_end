@@ -17,29 +17,28 @@ document.getElementById('form-login').addEventListener('submit', function(event)
     // 4. Lógica de Verificação e Redirecionamento
     if (usuarioEncontrado) {
         
-        // Armazena o NOME do usuário logado
+        // CRÍTICO: Limpa qualquer sessão anterior de favoritos que possa estar misturando os contextos
+        // Embora os Favoritos sejam globais, limpamos dados de sessão temporários:
+        sessionStorage.removeItem('checkoutData');
+        localStorage.removeItem('resumoCompra'); 
+
+        // Armazena o NOME e TIPO do usuário logado
         localStorage.setItem('usuarioLogadoNome', usuarioEncontrado.nome);
-        
-        // Armazena o tipo de usuário logado
         localStorage.setItem('usuarioLogadoTipo', usuarioEncontrado.tipo);
         
         if (usuarioEncontrado.tipo === 'Participante') {
-            // REDIRECIONAMENTO para a tela de participante
             alert("Login de Participante realizado com sucesso!");
             window.location.href = "principal_participante.html";
             
         } else if (usuarioEncontrado.tipo === 'Organizador') {
-            // REDIRECIONAMENTO para a tela do Organizador (Alteração aplicada aqui)
             alert("Login de Organizador realizado com sucesso!");
             window.location.href = "principal_organizador.html";
             
         } else {
-            // Tipo não reconhecido
             alert("Login bem-sucedido, mas tipo de conta não reconhecido.");
         }
         
     } else {
-        // Login falhou (usuário não encontrado ou senha incorreta)
         alert("Email ou senha incorretos.");
     }
 });

@@ -1,8 +1,7 @@
 // =================================================================
-// 1. Lógica do Dropdown de Perfil (Corrigido e Completo)
+// 1. Lógica do Dropdown de Perfil (Mantida)
 // =================================================================
 
-// Função de toggleDropdown para o menu de perfil
 function toggleDropdown() {
     const opcoesPerfil = document.getElementById('opcoes-perfil');
     if (!opcoesPerfil) return; 
@@ -16,7 +15,29 @@ function toggleDropdown() {
     }
 }
 
-// Função para carregar nome e iniciais (igual ao que já tínhamos)
+function configurarMenuPerfil() {
+    const botaoPerfil = document.getElementById('botao-perfil');
+    const containerPerfil = document.getElementById('perfil-dropdown-container');
+
+    // Configura o clique no botão para chamar a função de toggle
+    if (botaoPerfil) {
+        botaoPerfil.addEventListener('click', toggleDropdown);
+    }
+
+    // Fecha o dropdown se o usuário clicar em qualquer lugar fora dele
+    document.addEventListener('click', function(event) {
+        const opcoesPerfil = document.getElementById('opcoes-perfil');
+        if (containerPerfil && opcoesPerfil && !containerPerfil.contains(event.target)) {
+            if (opcoesPerfil.classList.contains('visible')) {
+                opcoesPerfil.classList.remove('visible');
+                opcoesPerfil.classList.add('hidden');
+            }
+        }
+    });
+
+    carregarNomeUsuario();
+}
+
 function carregarNomeUsuario() {
     const nomeUsuarioElement = document.getElementById('nome-usuario-perfil');
     const avatarSiglaElement = document.querySelector('.avatar-sigla');
@@ -48,30 +69,6 @@ function carregarNomeUsuario() {
     }
 }
 
-function configurarMenuPerfil() {
-    const botaoPerfil = document.getElementById('botao-perfil');
-    const containerPerfil = document.getElementById('perfil-dropdown-container');
-
-    // Configura o clique no botão para chamar a função de toggle
-    if (botaoPerfil) {
-        botaoPerfil.addEventListener('click', toggleDropdown);
-    }
-
-    // Fecha o dropdown se o usuário clicar em qualquer lugar fora dele
-    document.addEventListener('click', function(event) {
-        const opcoesPerfil = document.getElementById('opcoes-perfil');
-        if (containerPerfil && opcoesPerfil && !containerPerfil.contains(event.target)) {
-            if (opcoesPerfil.classList.contains('visible')) {
-                opcoesPerfil.classList.remove('visible');
-                opcoesPerfil.classList.add('hidden');
-            }
-        }
-    });
-
-    carregarNomeUsuario();
-}
-
-
 // =================================================================
 // 2. Lógica de Favoritos e Eventos
 // =================================================================
@@ -98,7 +95,7 @@ function removerFavorito(eventoId) {
     alert('Evento removido dos favoritos!');
 
     // Remove o card da tela
-    const card = document.querySelector(`.evento-card[data-evento-id="${eventoId}"]`);
+    const card = document.querySelector(`.evento-card-link[data-evento-id="${eventoId}"]`);
     if (card) card.remove();
     
     // Verifica se a lista ficou vazia
@@ -106,7 +103,7 @@ function removerFavorito(eventoId) {
 }
 
 // =================================================================
-// 3. Renderização
+// 3. Renderização (CORRIGIDO PARA SER CLICÁVEL)
 // =================================================================
 function criarCardEvento(evento) {
     // Formata a data para exibição
@@ -120,18 +117,22 @@ function criarCardEvento(evento) {
     const localOuEndereco = evento.local || evento.endereco || 'Local Não Informado';
 
     return `
-        <div class="evento-card" data-evento-id="${evento.id}">
-            <div class="card-imagem-container">
-                <img src="${evento.imagem}" alt="Imagem do Evento ${evento.nome}">
-                <button class="favorito-icon" data-id="${evento.id}">
-                   <i class="fas fa-heart"></i> </button>
+        <a href="detalhe_evento.html?id=${evento.id}" class="evento-card-link" data-evento-id="${evento.id}">
+            <div class="evento-card">
+                <div class="card-imagem-container">
+                    <img src="${evento.imagem}" alt="Imagem do Evento ${evento.nome}">
+                    
+                    <button class="favorito-icon" data-id="${evento.id}" onclick="event.preventDefault(); event.stopPropagation(); removerFavorito('${evento.id}');">
+                       <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${evento.nome}</h3>
+                    <p class="card-local">${localOuEndereco}</p>
+                    <p class="card-data">${dataFormatada} às ${evento.horaInicio}</p>
+                </div>
             </div>
-            <div class="card-content">
-                <h3 class="card-title">${evento.nome}</h3>
-                <p class="card-local">${localOuEndereco}</p>
-                <p class="card-data">${dataFormatada} às ${evento.horaInicio}</p>
-            </div>
-        </div>
+        </a>
     `;
 }
 
@@ -166,14 +167,7 @@ function carregarFavoritos() {
             grid.insertAdjacentHTML('beforeend', criarCardEvento(evento));
         });
     }
-
-    // Configura os listeners de remoção nos corações
-    document.querySelectorAll('.favorito-icon').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = e.currentTarget.dataset.id; // ID está como string no dataset
-            removerFavorito(id);
-        });
-    });
+    // NOTA: O listener de remoção foi movido para o HTML (onclick) para evitar conflito com o link <a>.
 }
 
 // =================================================================
